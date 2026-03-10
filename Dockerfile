@@ -1,16 +1,12 @@
-# Use official Python runtime as a parent image
 FROM python:3.13-slim
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Install any needed packages specified in requirements.txt
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Устанавливаем зависимости
+RUN pip install aiogram==3.13.0 python-dotenv==1.0.1
 
-# Copy current directory contents into the container at /app
+# Копируем файлы
 COPY bot.py .
 COPY database.py .
 
-# Run bot.py when the container launches
 CMD ["python", "bot.py"]
